@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МЕБЕЛЬДОМ | Один салон — несколько фабрик</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Manrope"', 'sans-serif'],
+                    },
+                    colors: {
+                        wood: {
+                            900: '#1a1614',
+                            800: '#2c2420',
+                            700: '#4a3b32',
+                        },
+                        gold: {
+                            400: '#d4af37',
+                            500: '#c5a028',
+                            600: '#b08d1e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1a1614; }
+        ::-webkit-scrollbar-thumb { background: #4a3b32; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
+        
+        .gold-text {
+            background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #b08d1e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .floating-btn {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body class="bg-wood-900 text-stone-200 font-sans antialiased">
+
+    <!-- Floating Messengers -->
+    <div class="fixed bottom-8 right-8 z-[100] flex flex-col gap-4">
+        <a href="https://wa.me/79638237733" target="_blank" class="w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-xl hover:scale-110 transition-transform floating-btn">
+            <i data-lucide="message-circle" class="w-8 h-8"></i>
+        </a>
+        <a href="https://t.me/+79638237733" target="_blank" class="w-14 h-14 bg-[#0088cc] rounded-full flex items-center justify-center text-white shadow-xl hover:scale-110 transition-transform">
+            <i data-lucide="send" class="w-8 h-8"></i>
+        </a>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed w-full z-50 bg-wood-900/95 backdrop-blur-sm border-b border-white/10" id="header">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 border border-gold-400 flex items-center justify-center rotate-45">
+                    <div class="w-8 h-8 bg-gold-400 -rotate-45 flex items-center justify-center text-wood-900">
+                        <i data-lucide="armchair" class="w-5 h-5"></i>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-serif font-bold tracking-widest text-white">МЕБЕЛЬ<span class="gold-text">ДОМ</span></h1>
+                    <p class="text-[9px] uppercase tracking-[0.2em] text-stone-400 font-bold">Салон мебели в Комсомольске</p>
+                </div>
+            </div>
+
+            <!-- Nav (Desktop) -->
+            <nav class="hidden lg:flex gap-8 text-[11px] uppercase tracking-widest font-bold text-stone-300">
+                <a href="#about" class="hover:text-gold-400 transition-colors">О салоне</a>
+                <a href="#catalog" class="hover:text-gold-400 transition-colors">Новинки</a>
+                <a href="#calc" class="hover:text-gold-400 transition-colors">Расчет</a>
+                <a href="#contacts" class="hover:text-gold-400 transition-colors">Контакты</a>
+            </nav>
+
+            <!-- Contacts -->
+            <div class="hidden md:flex items-center gap-6">
+                <div class="text-right">
+                    <a href="tel:+79638237733" class="text-gold-400 flex items-center gap-2 justify-end font-serif text-lg hover:text-white transition-colors">
+                        <i data-lucide="phone" class="w-4 h-4"></i>
+                        <span>+7 (963) 823-77-33</span>
+                    </a>
+                    <span class="text-[10px] text-stone-500 uppercase">Пр. Первостроителей 21</span>
+                </div>
+                <div class="flex gap-2">
+                    <a href="https://wa.me/79638237733" class="text-stone-400 hover:text-gold-400 transition-colors"><i data-lucide="message-square" class="w-5 h-5"></i></a>
+                    <a href="https://t.me/+79638237733" class="text-stone-400 hover:text-gold-400 transition-colors"><i data-lucide="send" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+
+            <button class="lg:hidden text-white" onclick="toggleMobileMenu()">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-[90vh] flex items-center justify-center overflow-hidden pt-20">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80" class="w-full h-full object-cover opacity-40 scale-105" alt="Luxury Interior">
+            <div class="absolute inset-0 bg-gradient-to-t from-wood-900 via-wood-900/70 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 container mx-auto px-4 text-center">
+            <div class="inline-block mb-6 border-b border-gold-400 pb-2">
+                <span class="text-gold-400 uppercase tracking-[0.3em] text-xs md:text-sm font-bold">Комсомольск-на-Амуре</span>
+            </div>
+            <h1 class="text-4xl md:text-7xl font-serif text-white mb-8 leading-tight max-w-5xl mx-auto">
+                Один салон — <span class="italic text-gold-400">несколько фабрик:</span> <br> от эконом до премиум сегмента
+            </h1>
+            <p class="text-stone-300 max-w-2xl mx-auto mb-10 text-lg font-light">
+                Прямые поставки от 2-х крупнейших фабрик, партнерская сеть и собственное производство на месте. Индивидуальный подход под любой бюджет.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                <a href="https://wa.me/79638237733" class="bg-gold-400 text-wood-900 px-8 py-4 font-bold uppercase tracking-widest hover:bg-white transition-all flex items-center justify-center gap-3">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i> Написать в WhatsApp
+                </a>
+                <a href="#calc" class="border border-white/30 text-white px-8 py-4 font-bold uppercase tracking-widest hover:bg-white hover:text-wood-900 transition-all backdrop-blur-sm">
+                    Рассчитать стоимость
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Block 2: New Arrivals -->
+    <section id="catalog" class="py-24 bg-wood-900 relative">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <h2 class="text-gold-400 uppercase tracking-widest text-xs font-bold mb-3">Свежие поступления</h2>
+                    <h2 class="text-4xl md:text-5xl font-serif text-white">Новинки этого месяца</h2>
+                </div>
+                <button onclick="toggleProductForm()" class="hidden md:block text-stone-600 hover:text-gold-400 text-xs uppercase tracking-widest transition-colors font-bold">
+                    + Добавить товар
+                </button>
+            </div>
+
+            <!-- Form -->
+            <div id="add-product-form" class="hidden bg-wood-800 p-8 mb-12 border border-gold-400/20 max-w-2xl mx-auto shadow-2xl">
+                <h3 class="text-white font-serif text-xl mb-6">Панель управления новинками</h3>
+                <form onsubmit="addProduct(event)" class="grid gap-4">
+                    <input type="text" id="prod-title" placeholder="Название модели" class="bg-wood-900 border border-white/10 p-4 text-white focus:border-gold-400 outline-none" required>
+                    <input type="text" id="prod-price" placeholder="Цена (например: от 45 000 ₽)" class="bg-wood-900 border border-white/10 p-4 text-white focus:border-gold-400 outline-none" required>
+                    <input type="url" id="prod-image" placeholder="Ссылка на изображение (URL)" class="bg-wood-900 border border-white/10 p-4 text-white focus:border-gold-400 outline-none" required>
+                    <button type="submit" class="bg-gold-400 text-wood-900 font-bold py-4 hover:bg-white transition-all uppercase tracking-widest">Добавить в каталог</button>
+                </form>
+            </div>
+
+            <div id="products-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Data from JS -->
+                <div class="animate-pulse bg-wood-800 h-96"></div>
+                <div class="animate-pulse bg-wood-800 h-96"></div>
+                <div class="animate-pulse bg-wood-800 h-96"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Block 3: Status / About -->
+    <section id="about" class="py-24 bg-wood-800 border-y border-white/5 relative overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl font-serif text-white mb-8">Почему выбирают <span class="gold-text italic">МЕБЕЛЬДОМ</span>?</h2>
+                    <div class="space-y-8">
+                        <div class="flex gap-6 group">
+                            <div class="shrink-0 w-14 h-14 border border-gold-400 flex items-center justify-center text-gold-400 group-hover:bg-gold-400 group-hover:text-wood-900 transition-all duration-500">
+                                <i data-lucide="factory" class="w-7 h-7"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-serif text-white mb-2">Официальный представитель</h4>
+                                <p class="text-stone-400 text-sm leading-relaxed">Мы являемся прямыми представителями 2-х крупных федеральных фабрик и официальным партнером еще одной. Это гарантирует вам заводскую цену без наценок посредников.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 group">
+                            <div class="shrink-0 w-14 h-14 border border-gold-400 flex items-center justify-center text-gold-400 group-hover:bg-gold-400 group-hover:text-wood-900 transition-all duration-500">
+                                <i data-lucide="hammer" class="w-7 h-7"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-serif text-white mb-2">Своя фабрика в городе</h4>
+                                <p class="text-stone-400 text-sm leading-relaxed">У нас есть собственное производство прямо здесь, в Комсомольске. Это позволяет нам делать любую нестандартную мебель быстро и под ваш запрос.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 group">
+                            <div class="shrink-0 w-14 h-14 border border-gold-400 flex items-center justify-center text-gold-400 group-hover:bg-gold-400 group-hover:text-wood-900 transition-all duration-500">
+                                <i data-lucide="layers" class="w-7 h-7"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-serif text-white mb-2">Любой сегмент</h4>
+                                <p class="text-stone-400 text-sm leading-relaxed">От качественной мебели эконом-класса до эксклюзивных премиум-решений из массива и металла с золочением.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&q=80" class="w-full grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl" alt="Mebeldom Production">
+                    <div class="absolute -bottom-8 -left-8 bg-gold-400 p-8 text-wood-900">
+                        <div class="text-4xl font-serif font-bold">15+</div>
+                        <div class="text-xs uppercase tracking-widest font-bold">лет опыта</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Block 4: Quiz (Embedded as requested) -->
+    <section id="calc" class="py-24 bg-wood-900 relative">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <div class="bg-wood-800 border border-gold-400/20 shadow-2xl flex flex-col md:flex-row overflow-hidden min-h-[500px]">
+                <!-- Quiz Info -->
+                <div class="w-full md:w-1/3 bg-gold-400 p-10 text-wood-900 flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-3xl font-serif font-bold mb-6 italic leading-tight">Расчет стоимости за 2 минуты</h2>
+                        <p class="font-medium opacity-80 mb-8">Ответьте на 3 вопроса, и мы пришлем вам предварительную смету и 3D-проект в подарок.</p>
+                    </div>
+                    <ul class="space-y-4 text-sm font-bold uppercase tracking-wider">
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Точный расчет</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Подбор материалов</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Дизайн-проект</li>
+                    </ul>
+                </div>
+                <!-- Quiz Steps Container -->
+                <div class="w-full md:w-2/3 p-8 md:p-16 flex flex-col justify-center relative bg-wood-pattern" id="quiz-main-container">
+                    <div id="quiz-content">
+                        <!-- Content via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacts" class="bg-black text-stone-500 pt-24 pb-12 border-t border-white/5">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+            <div class="col-span-1 md:col-span-1">
+                <h2 class="text-2xl font-serif text-white mb-6">МЕБЕЛЬ<span class="gold-text">ДОМ</span></h2>
+                <p class="text-sm leading-relaxed mb-8">Ваш надежный партнер в мире мебели. От простой тумбочки до сложной кухни в элитном стиле.</p>
+                <div class="flex gap-3">
+                    <a href="https://wa.me/79638237733" class="w-11 h-11 bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-gold-400 hover:text-wood-900 transition-all"><i data-lucide="message-square" class="w-5 h-5"></i></a>
+                    <a href="https://t.me/+79638237733" class="w-11 h-11 bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-gold-400 hover:text-wood-900 transition-all"><i data-lucide="send" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-white font-serif text-lg mb-6">Наш адрес</h3>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-gold-400 shrink-0"></i>
+                        <span>Комсомольск-на-Амуре,<br>Проспект Первостроителей 21</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="clock" class="w-5 h-5 text-gold-400 shrink-0"></i>
+                        <span>Ежедневно 10:00 — 19:00</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-white font-serif text-lg mb-6">Связь</h3>
+                <ul class="space-y-4 text-sm font-bold">
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="phone" class="w-5 h-5 text-gold-400"></i>
+                        <a href="tel:+79638237733" class="text-stone-300 hover:text-gold-400 transition-colors">+7 (963) 823-77-33</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i data-lucide="message-circle" class="w-5 h-5 text-gold-400"></i>
+                        <a href="https://wa.me/79638237733" target="_blank" class="text-stone-300 hover:text-gold-400 transition-colors">Написать в WhatsApp</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-white font-serif text-lg mb-6">Быстрая заявка</h3>
+                <form class="space-y-4">
+                    <input type="tel" placeholder="Ваш телефон" class="w-full bg-white/5 border-b border-white/20 p-3 text-white outline-none focus:border-gold-400 transition-colors">
+                    <button class="w-full bg-gold-400 text-wood-900 py-3 font-bold uppercase text-xs tracking-widest hover:bg-white transition-all">Жду звонка</button>
+                </form>
+            </div>
+        </div>
+        <div class="container mx-auto px-4 text-center text-[10px] uppercase tracking-[0.3em] opacity-30 border-t border-white/5 pt-10">
+            &copy; 2024 МЕБЕЛЬДОМ. Комсомольск-на-Амуре.
+        </div>
+    </footer>
+
+    <!-- Firebase & Logic -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        let user = null;
+
+        const initAuth = async () => {
+             if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                await signInWithCustomToken(auth, __initial_auth_token);
+             } else {
+                await signInAnonymously(auth);
+             }
+        };
+        initAuth();
+
+        onAuthStateChanged(auth, (u) => {
+            user = u;
+            if(u) { loadProducts(); initQuiz(); }
+        });
+
+        // --- Products Logic ---
+        const productsGrid = document.getElementById('products-grid');
+        
+        function loadProducts() {
+            const q = query(collection(db, 'artifacts', appId, 'public', 'data', 'products_v2'), orderBy('createdAt', 'desc'));
+            onSnapshot(q, (snapshot) => {
+                productsGrid.innerHTML = '';
+                if(snapshot.empty) {
+                    renderDefaultProducts();
+                } else {
+                    snapshot.forEach(doc => renderProductCard(doc.data()));
+                }
+            });
+        }
+
+        function renderProductCard(data) {
+            const div = document.createElement('div');
+            div.className = 'group relative bg-wood-800 border border-white/5 overflow-hidden shadow-lg hover:border-gold-400/50 transition-all duration-500';
+            div.innerHTML = `
+                <div class="h-80 overflow-hidden">
+                    <img src="${data.image}" alt="${data.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="p-6 relative">
+                    <span class="text-[10px] text-gold-400 uppercase tracking-widest font-bold mb-2 block">Premium Collection</span>
+                    <h3 class="text-xl font-serif text-white mb-4">${data.title}</h3>
+                    <div class="flex justify-between items-center border-t border-white/10 pt-4">
+                        <span class="text-xl font-serif text-white">${data.price}</span>
+                        <a href="https://wa.me/79638237733" class="text-gold-400 hover:text-white transition-colors uppercase text-[10px] font-bold tracking-widest">Заказать</a>
+                    </div>
+                </div>
+            `;
+            productsGrid.appendChild(div);
+        }
+
+        function renderDefaultProducts() {
+            const defaults = [
+                {title: 'Кухня "Верона" (Массив)', price: 'от 180 000 ₽', image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80'},
+                {title: 'Шкаф-купе "Лофт"', price: 'от 45 000 ₽', image: 'https://images.unsplash.com/photo-1558603668-6570496b66f8?auto=format&fit=crop&q=80'},
+                {title: 'Гостиная "Монако"', price: 'от 95 000 ₽', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80'}
+            ];
+            defaults.forEach(renderProductCard);
+        }
+
+        window.addProduct = async (e) => {
+            e.preventDefault();
+            if(!user) return;
+            const title = document.getElementById('prod-title').value;
+            const price = document.getElementById('prod-price').value;
+            const image = document.getElementById('prod-image').value;
+            
+            try {
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'products_v2'), {
+                    title, price, image, createdAt: serverTimestamp()
+                });
+                e.target.reset();
+                document.getElementById('add-product-form').classList.add('hidden');
+            } catch(err) { console.error(err); }
+        };
+
+        // --- Quiz Logic ---
+        let step = 0;
+        let quizData = { type: '', material: '', budget: '', contact: '' };
+        const quizContent = document.getElementById('quiz-content');
+
+        const steps = [
+            {
+                q: "Какую мебель вы ищете?",
+                opts: ["Кухня", "Шкаф / Гардеробная", "Детская", "Другое"],
+                key: 'type'
+            },
+            {
+                q: "Предпочтительный материал?",
+                opts: ["Натуральное дерево", "МДФ / Эмаль", "ЛДСП (Эконом)", "Металл + Стекло"],
+                key: 'material'
+            },
+            {
+                q: "Желаемый сегмент?",
+                opts: ["Доступный эконом", "Средний (Оптимальный)", "Премиум / Люкс"],
+                key: 'budget'
+            }
+        ];
+
+        window.initQuiz = () => { renderQuizStep(); };
+
+        function renderQuizStep() {
+            if (step < steps.length) {
+                const s = steps[step];
+                quizContent.innerHTML = `
+                    <div class="animate-fadeIn">
+                        <div class="text-gold-400 font-bold text-xs uppercase tracking-widest mb-2">Шаг ${step + 1} из 4</div>
+                        <h3 class="text-3xl font-serif text-white mb-10">${s.q}</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            ${s.opts.map(o => `
+                                <button onclick="nextQuizStep('${s.key}', '${o}')" class="p-4 border border-white/10 text-left text-stone-300 hover:border-gold-400 hover:bg-gold-400/10 transition-all font-medium">
+                                    ${o}
+                                </button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            } else {
+                quizContent.innerHTML = `
+                    <div class="text-center animate-fadeIn">
+                        <i data-lucide="gift" class="w-12 h-12 text-gold-400 mx-auto mb-6"></i>
+                        <h3 class="text-3xl font-serif text-white mb-4">Почти готово!</h3>
+                        <p class="text-stone-400 mb-8">Оставьте ваш телефон, мы пришлем расчет и каталог материалов в WhatsApp.</p>
+                        <form onsubmit="finishQuiz(event)" class="space-y-4 max-w-sm mx-auto">
+                            <input type="tel" id="q-phone" placeholder="+7 (___) ___-__-__" class="w-full bg-wood-900 border border-white/20 p-4 text-white text-lg focus:border-gold-400 outline-none text-center" required>
+                            <button type="submit" class="w-full bg-gold-400 text-wood-900 font-bold py-4 hover:bg-white transition-all uppercase tracking-widest">Получить проект и цену</button>
+                        </form>
+                    </div>
+                `;
+                lucide.createIcons();
+            }
+        }
+
+        window.nextQuizStep = (key, val) => {
+            quizData[key] = val;
+            step++;
+            renderQuizStep();
+        };
+
+        window.finishQuiz = async (e) => {
+            e.preventDefault();
+            quizData.contact = document.getElementById('q-phone').value;
+            try {
+                if(user) {
+                    await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'leads_v2'), {
+                        ...quizData, createdAt: serverTimestamp()
+                    });
+                }
+                quizContent.innerHTML = `
+                    <div class="text-center animate-fadeIn">
+                        <i data-lucide="party-popper" class="w-12 h-12 text-gold-400 mx-auto mb-6"></i>
+                        <h3 class="text-3xl font-serif text-white mb-4">Заявка принята!</h3>
+                        <p class="text-stone-400">Мы уже начали подбор решений. Свяжемся с вами в течение 15 минут.</p>
+                    </div>
+                `;
+                lucide.createIcons();
+            } catch(err) { console.error(err); }
+        };
+
+        window.toggleMobileMenu = () => {
+             // Logic for mobile toggle could go here
+        };
+
+        window.toggleProductForm = () => {
+            document.getElementById('add-product-form').classList.toggle('hidden');
+        };
+
+        lucide.createIcons();
+    </script>
+</body>
+</html>
